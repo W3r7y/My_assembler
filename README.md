@@ -51,9 +51,9 @@ The program has all the capabilities of an assembler and demonstrates the full "
   This computer has a variety of instructions, each instruction consists of an operation and operands.
    The number of operands depends on the type of instruction.
  
-    Each instruction is encoded to 32 bits. The least significant bit of the instruction coding will be specified as bit No. 0, and the most significant bit as No. 31.
+   Each instruction is encoded to 32 bits. The least significant bit of the instruction coding will be specified as bit No. 0, and the most significant bit as No. 31.
  
-    An instruction occupies four consecutive bytes in the computer's memory, and is stored using the little-endian method.
+   An instruction occupies four consecutive bytes in the computer's memory, and is stored using the little-endian method.
   That is, bits 0-7 of the instruction are in the lowest-addressed byte, bits 8-15 are in the next byte, then bits 16-23, 
   and bits 24-31 are in the highest addressed byte. When referring to the address of an instruction in memory,
   it is always the address of the lowest byte.
@@ -61,7 +61,7 @@ The program has all the capabilities of an assembler and demonstrates the full "
   Each instruction has an operation code, also called **opcode**, which identifies the operation performed by the instruction.
    Some instructions have a secondary identification code, called a **funct**.
 
-    The instructions are divided into 3 types: R type instructions, I type instructions, and J type instructions.
+The instructions are divided into 3 types: R type instructions, I type instructions, and J type instructions.
   Below is a table detailing all the instructions, according to their type, and with their identifying codes:
 
 | Instruction name | Type | Opcode | Funct |
@@ -94,7 +94,8 @@ The program has all the capabilities of an assembler and demonstrates the full "
 |       call       |  J   |   32   |       |
 |       stop       |  J   |   63   |       |
 
-Notice instruction syntax in assembly language: the instruction name is always written in lowercase letters.
----
 
+   Notice instruction syntax in assembly language: the instruction name is always written in lowercase letters.
+
+---
 
