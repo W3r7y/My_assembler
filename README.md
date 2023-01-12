@@ -99,3 +99,58 @@ The instructions are divided into 3 types: R type instructions, I type instructi
 
 ---
 
+# **Structure of instructions**
+
+####  **R type instructions**
+
+|opcode    |   rs   |    rt    |    rd    |  funct  | not in use |
+|--------  |--------| ---------| ---------| --------|------------|
+|31 .... 26|25 ... 21|20 ... 16|15 ...  11|10 ...  6|5    ...   0|
+
+
+R type instructions includes the following group of instructions:
+
+- Arithmetic and logic R type instructions: add, sub, and, or, nor.
+- Copy instructions: move, mvhi, mvlo.
+
+
+ The instructions nor, or, and, sub, add have three operands, and all three are registers.
+ The instructions perform an arithmetic or logical operation between the two registers **rs** and **rt**, 
+and the result is stored in the third register **rd**.
+
+ All R-type arithmetic/logic instructions have the same operation code (opcode field), which is 0. 
+In order to distinguish between the different instructions, there is an additional field called **funct** which 
+is unique to each instruction (see the table of instructions above).
+
+- **add** instruction performs an operation of adding numbers, rd = rs + rt.
+- **sub** instruction performs an operation of subtraction , rd = rs - rt.
+- **and** operator performs logical 'and' between the bits of the operands, rd = rs & rt.
+- **or** operator performs logical 'or' between the bits of the operands, rd = rs | rt.
+- **nor** operator performs logical 'nor' between the bits of the operands, rd = ~(rs | rt).
+
+For example: 
+
+Instruction: add $3, $19, $8
+
+The instruction adds the content of register $3 with the content of register $19, and stores the result into register $8.
+
+++Copy instructions:++
+
+Instructions move,mvhi,mvlo has 2 operands, and both are registers. Instructions copies the content of the source register into the 
+target register.
+
+All R-type copy instructions have the same operation code (opcode field), which is 1. Similar to the logical instructions, 
+also for copy instructions, the funct field is used to distinguish between the instructions.
+
+- **move** instruction, copies the content of the register rs into the register rd.
+- **mvhi** instruction, copies the second half of the bits (bits 16-31) from the register rs into the first half of the bits (bits 0-15) of register rd. 
+- **mvlo** instruction, copies the first half of the bits (bits 0-15) from register rs into the second half or the bits (bits 16-31) of register rd. 
+
+For example: 
+
+Instruction: move $23, $2
+
+This instruction copies the content of register $2 into register $23. In this case, the content of register rt is zero, because the register is not in use.
+Usage of instructions mvhi and mvlo is similar.
+
+#### **++I type instructions++**
