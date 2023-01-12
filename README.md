@@ -143,7 +143,7 @@ All R-type copy instructions have the same operation code (opcode field), which 
 also for copy instructions, the funct field is used to distinguish between the instructions.
 
 - **move** instruction, copies the content of the register rs into the register rd.
-- **mvhi** instruction, copies the second half of the bits (bits 16-31) from the register rs into the first half of the bits (bits 0-15) of register rd. 
+- **mvhi** instruction, copies the second half of the bits (bits 16-31) from register rs into the first half of the bits (bits 0-15) of register rd. 
 - **mvlo** instruction, copies the first half of the bits (bits 0-15) from register rs into the second half or the bits (bits 16-31) of register rd. 
 
 For example: 
@@ -153,4 +153,49 @@ Instruction: move $23, $2
 This instruction copies the content of register $2 into register $23. In this case, the content of register rt is zero, because the register is not in use.
 Usage of instructions mvhi and mvlo is similar.
 
-#### **++I type instructions++**
+#### **I type instructions**
+
+|opcode    |   rs    |    rt    |    immed    |
+|----------|---------|----------|-------------|
+|31 .... 26|25 ... 21|20 .... 16|15 ......   0|
+
+
+In type I instructions, one of the operands is a constant value, also called an immediate value. The constant is an integer,
+ which can be represented with a width of 16 bits using the 2's complement method.
+ Bit 0 of the instruction encoding is the least significant bit of the constant.
+
+Each one of I type instructions has unique opcode value.
+
+The group of type I instructions includes the following instructions:
+
+- Arithmetic and logic instructions: addi, subi, andi, ori, nori.
+- Conditional branch instructions: beq, bne, blt, bgt.
+- Instructions for loading and saving in memory: lb, sb, lw, sw, lh, sh.
+
+Arithmetic and logic I type instructions:
+Instructions addi, subi, andi, ori, nori, perform an arithmetic or logical operation between the register rs and the immediate value immed,
+ and the result is stored in the register rt. When executing the instruction, the processor expands the value immed to 32 bits,
+ so that the operation is performed on operands with a width of 32 bits.
+
+- The instruction **addi** performs an addition operation, rt = rs + immed.
+- The instruction **subi** performs an subtraction operation, rt = rs - immed.
+- The instruction **andi** performs an logical 'and' operation between the bits of the operands, i.e. rt = rs & immed.
+- The instruction **ori** performs an logical 'or' operation between the bits of the operands, i.e. rt = rs | immed.
+- The instruction **nori** performs an logical 'not or' operation between the bits of the operands, i.e. rt = ~(rs | immed).
+
+For example: 
+
+Instruction: addi $9, -45, $8.
+
+This instruction performs additions between the contents of register $9 with the immediate value -45 and stores the result in register $8.
+
+>**Notice:** There is a difference in the order of the operands between the instruction in assembly language and the binary coding.
+
+In the coding of this instruction, the opcode field will contain the operation code of addi, 
+the rs field will contain the number of the first register (in this example 9) wich is olso first addend, 
+the rt field will contain the number of the result register (in this example 8), 
+and the immed field will contain the constant that is the second addend (in this example the number -45).
+Usage of instructions subi, andi, ori, nori is similar.
+
+Conditional branch instructions:
+
