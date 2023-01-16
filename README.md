@@ -362,3 +362,36 @@ This instruction has no operands and is intended to stop the program. When codin
 # **Program structure in assembly language**
 
 
+An assembly language program is built from statements. Assembly language source file consists of lines containing statements
+ of the language, where each statement appears on a separate line, separation between sentences is with the character '\n' (new line).
+ The length of a line in the source file is a maximum of 80 characters (not including the \n character).
+
+There are four types of statements in assembly language, and they are:
+- **Empty statement** - This is a line that contains only whitespace characters (only spaces and tabs). It is possible that there is no character in the line except for the character '\n', which means the line is empty.
+- **Note statement** - This is a line where the first non-white character is ';' (semicolon). The assembler  completely ignores this line.
+- **Directive statement** - This is a statement that instructs the assembler what to do when it runs on the source program.
+ There are several types of directive statements. The directive statement may cause the program to allocate memory and
+ initialize variables, but it does not produce the encoding of machine instructions intended to be executed when the program runs.
+- **Instruction statement** - This is a statement that produces a coding of machine instructions to be executed when the program runs. 
+ The statement consists of the name of the instruction (operation) that the processor must perform, and the operands of the instruction.
+
+The directive sentence has the following structure:
+
+A label definition can appear at the beginning of the sentence. The label has a legal syntax that will be described later. The label is optional.
+ Then the name of the instruction appears. Parameters will appear after the instruction name (the number of parameters depending on the instruction).
+A directive's name begins with the letter '.'  followed by lower case characters only.
+
+- Directive sentences ‘.dd’ , ‘.dw’ ,‘.db’
+ 
+The parameters of the command statements 'db', '.dw', '.dd' are valid integers (one or more) separated by the character ',' (comma). for example:
+> .db 7, −57, 17, +9 
+
+>.dw 120056 
+
+>.dh 0, −60431, 1700, 3, −1 
+
+- Directive ‘.asciz’ 
+
+The 'asciz' directive has one parameter, which is a valid string. The characters of the string are encoded according to 
+the corresponding ascii values, and inserted into the data image in their order, each character in a separate byte.
+
