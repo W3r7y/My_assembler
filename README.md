@@ -375,13 +375,13 @@ There are four types of statements in assembly language, and they are:
 - **Instruction statement** - This is a statement that produces a coding of machine instructions to be executed when the program runs. 
  The statement consists of the name of the instruction (operation) that the processor must perform, and the operands of the instruction.
 
-The directive sentence has the following structure:
+The directive statemets has the following structure:
 
 A label definition can appear at the beginning of the sentence. The label has a legal syntax that will be described later. The label is optional.
  Then the name of the instruction appears. Parameters will appear after the instruction name (the number of parameters depending on the instruction).
 A directive's name begins with the letter '.'  followed by lower case characters only.
 
-- Directive sentences ‘.dd’ , ‘.dw’ ,‘.db’
+- Directive statements ‘.dd’ , ‘.dw’ ,‘.db’
  
 The parameters of the command statements 'db', '.dw', '.dd' are valid integers (one or more) separated by the character ',' (comma). for example:
 > .db 7, −57, 17, +9 
@@ -393,5 +393,43 @@ The parameters of the command statements 'db', '.dw', '.dd' are valid integers (
 - Directive ‘.asciz’ 
 
 The 'asciz' directive has one parameter, which is a valid string. The characters of the string are encoded according to 
-the corresponding ascii values, and inserted into the data image in their order, each character in a separate byte.
+the corresponding ascii values, and inserted into the data image in their order, each character in a separate byte, for example:
+>.asciz "hello world"
+
+- Directive statement ‘.entry’
+
+The 'entry' directive has one parameter, which is the name of a label defined in the current source file (label that receives its value in this file).
+ The purpose of the entry directive is to characterize this label in a way that allows assembly code found in other source files 
+to use it (as an instruction operand). For example:
+
+>		 .entry HELLO
+> HELLO:	 add 1$ ,$2,$5 
+
+Those statements informs the assembler that there may be a reference in another source file to the HELLO label defined in the current file.
+
+- Directive statement ‘.extern’
+
+The 'extern' directive has one parameter, and is the name of a label that is not defined in the current source file.
+ The purpose of the instruction is to inform the assembler that the label is defined in another source file, 
+and that the assembly code in the current file makes use of the label.
+
+Instruction statements:
+
+An instructional statements consists of the following parts:
+1. Lebel (optional)
+2. Name of the instruction.
+3. Operands, depending on the type of instruction.
+
+A label is a symbol that is defined at the beginning of an instruction statement or at the beginning of a directive statement
+ that defines variables. A valid label begins with an alphabetic letter (uppercase or lowercase), followed by some series of alphabetic
+ letters (uppercase or lowercase) and/or digits. The maximum length of a label is 31 characters. Label alwais ends with the character ':' 
+wich is not part of the label. The same label must not be defined more than once. Uppercase and lowercase letters are considered **different**.
+
+**Note**: assembly language reserved words (ie the name of an action or instruction) cannot also be used as the name of a label.
+ For example: the symbols add , asciz cannot be used as labels, but the symbols Add , ASCiz are valid labels.
+
+A valid number begins with an optional sign: '-' or '+' followed by a series of decimal digits. for example:
++123, 5, 76 are valid numbers. Our assembly language does not support representation in a base other than decimal, and there is no support for non-whole numbers.
+ 
+A valid string is a series of visible (printable) ascii characters, surrounded by double quotes (the quotes are not considered part of the string). Example of a valid string: "world hello."
 
