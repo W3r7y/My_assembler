@@ -16,6 +16,8 @@ The program has all the capabilities of an assembler and demonstrates the full "
 	>make
 
    You shoud get your executable "assembler" file.
+   
+   ![screenshpt](https://user-images.githubusercontent.com/111234974/212897732-da9a56af-b7e6-4ea2-964c-94f959b2eea3.png)
 
 2. Make sure that you have you assembly files (.as extension) ready. Instead you can use those that in the input_output_files directory.
 
@@ -433,3 +435,8 @@ A valid number begins with an optional sign: '-' or '+' followed by a series of 
  
 A valid string is a series of visible (printable) ascii characters, surrounded by double quotes (the quotes are not considered part of the string). Example of a valid string: "world hello."
 
+## Running the program
+
+Here's an example you can see at first "ps" file is passed as an argument and executed without errors. The second command accepts 3 different files as arguments: pserr, ps and test. As you can see, there are several errors that occur at runtime with the pserr file and informative messages describe them. In any case ps and test files are executed correctly.
+
+![screenshpt](https://user-images.githubusercontent.com/111234974/212899597-4173a81c-fe8f-44a5-8061-41c9e79b9f28.png)
